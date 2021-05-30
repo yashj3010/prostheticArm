@@ -42,9 +42,17 @@ void loop()
   unsigned long now = millis();
   if (now - lastReading > samplingInterval) {
     lastReading = now;
+    
     readEmg(&EMG1);
     readEmg(&EMG2);
     readEmg(&EMG3);
+    
+    Serial.println("EMG1:");
+    Serial.print(EMG1.diffValue);
+    Serial.println("EMG2:");
+    Serial.print(EMG2.diffValue);
+    Serial.println("EMG3:");
+    Serial.print(EMG3.diffValue);
   }
 }
 
