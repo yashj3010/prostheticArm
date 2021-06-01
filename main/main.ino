@@ -1,8 +1,16 @@
+#include "movement.h"
 #include <movingAvg.h>
 
 #define EMG1_PIN A0
 #define EMG2_PIN A1
 #define EMG3_PIN A2
+
+#define pin_little 3
+#define pin_middle 6
+#define pin_ring 5
+#define pin_index 9
+#define pin_thumb1 10
+#define pin_thumb2 11
 
 const int samplingRate = 3;
 const int samplingInterval = 10;
@@ -13,6 +21,12 @@ int outputPins[] = {};
 int inputPins[] = {EMG1_PIN, EMG2_PIN, EMG3_PIN};
 
 movingAvg emgReader(samplingRate);
+Movement movement(pin_little,
+    pin_middle,
+    pin_ring,
+    pin_index,
+    pin_thumb1,
+    pin_thumb2);
 
 struct EMGsensor
 { const byte  pin;
