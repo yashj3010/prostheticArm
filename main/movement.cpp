@@ -1,13 +1,5 @@
 #include "movement.h"
 #include <Servo.h>
-#include <Arduino.h>
-
-//#define pin_little 3
-//#define pin_middle 6
-//#define pin_ring 5
-//#define pin_index 9
-//#define pin_thumb1 10
-//#define pin_thumb2 11
 
 //pins  3      6     5     9     10     11
 Servo little, middle, ring, index, thumb1, thumb2;
@@ -20,11 +12,11 @@ const int delay3 = 2;
 const int delay4 = 1;
 
 Movement::Movement(byte pin_little,
-    byte pin_middle,
-    byte pin_ring,
-    byte pin_index,
-    byte pin_thumb1,
-    byte pin_thumb2) {
+                   byte pin_middle,
+                   byte pin_ring,
+                   byte pin_index,
+                   byte pin_thumb1,
+                   byte pin_thumb2) {
   this->pin_little = pin_little;
   this->pin_middle = pin_middle;
   this->pin_ring = pin_ring;
@@ -35,6 +27,13 @@ Movement::Movement(byte pin_little,
 }
 
 void Movement::init() {
+
+  pinMode(pin_little, OUTPUT);
+  pinMode(pin_middle, OUTPUT);
+  pinMode(pin_ring, OUTPUT);
+  pinMode(pin_index, OUTPUT);
+  pinMode(pin_thumb1, OUTPUT);
+  pinMode(pin_thumb2, OUTPUT);
   little.attach(pin_little);
   middle.attach(pin_middle);
   ring.attach(pin_ring);

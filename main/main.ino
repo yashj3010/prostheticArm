@@ -21,12 +21,13 @@ int outputPins[] = {};
 int inputPins[] = {EMG1_PIN, EMG2_PIN, EMG3_PIN};
 
 movingAvg emgReader(samplingRate);
+
 Movement movement(pin_little,
-    pin_middle,
-    pin_ring,
-    pin_index,
-    pin_thumb1,
-    pin_thumb2);
+                  pin_middle,
+                  pin_ring,
+                  pin_index,
+                  pin_thumb1,
+                  pin_thumb2);
 
 struct EMGsensor
 { const byte  pin;
@@ -56,17 +57,22 @@ void loop()
   unsigned long now = millis();
   if (now - lastReading > samplingInterval) {
     lastReading = now;
-    
+
     readEmg(&EMG1);
     readEmg(&EMG2);
     readEmg(&EMG3);
-    
+
     Serial.println("EMG1:");
     Serial.print(EMG1.diffValue);
     Serial.println("EMG2:");
     Serial.print(EMG2.diffValue);
     Serial.println("EMG3:");
     Serial.print(EMG3.diffValue);
+
+    movement.openHand();
+    delay(5000);
+    movement.closeHand();
+    delay(5000);
   }
 }
 
